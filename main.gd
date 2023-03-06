@@ -18,11 +18,14 @@ func _on_player_hit():
 func game_over():
 	$scoretimer.stop()
 	$mobtimer.stop()
+	$music.stop()
+	$deathsound.play()
 	$hud.show_game_over()
 	
 func new_game():
 	score = 0
 	$Player.start($startposition.position)
+	$music.play()
 	$starttimer.start()
 	$hud.update_score(score)
 	$hud.show_message('get ready...')
