@@ -19,6 +19,9 @@ func show_game_over():
 	
 func update_score(score):
 	$scorelabel.text = str(score)
+	
+func update_high_score(score):
+	$highscorelabel.text = str(score)
 
 func _on_startbutton_pressed():
 	$startbutton.hide()

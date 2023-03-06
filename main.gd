@@ -2,6 +2,7 @@ extends Node
 
 @export var mob_scene: PackedScene
 var score
+var high_score
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,6 +22,10 @@ func game_over():
 	$music.stop()
 	$deathsound.play()
 	$hud.show_game_over()
+	
+	high_score = int($hud/highscorelabel.text)
+	if score > high_score:
+		$hud.update_high_score(score)
 	
 func new_game():
 	score = 0
