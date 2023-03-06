@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dpn66jeho52w8"]
+[gd_scene load_steps=5 format=3 uid="uid://dpn66jeho52w8"]
 
 [ext_resource type="FontFile" uid="uid://b07g7ks2y3ad4" path="res://resources/sprites/dodge_assets/fonts/Xolonium-Regular.ttf" id="1_gu3o1"]
 [ext_resource type="Script" path="res://hud.gd" id="1_wwwta"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_sn2p5"]
+action = &"start_game"
+
+[sub_resource type="Shortcut" id="Shortcut_ow17a"]
+events = [SubResource("InputEventAction_sn2p5")]
 
 [node name="hud" type="CanvasLayer"]
 script = ExtResource("1_wwwta")
@@ -40,6 +46,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_gu3o1")
 theme_override_font_sizes/font_size = 64
+shortcut = SubResource("Shortcut_ow17a")
 text = "START"
 
 [node name="messagetimer" type="Timer" parent="."]
