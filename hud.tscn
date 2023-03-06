@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpn66jeho52w8"]
+
+[ext_resource type="FontFile" uid="uid://b07g7ks2y3ad4" path="res://resources/sprites/dodge_assets/fonts/Xolonium-Regular.ttf" id="1_gu3o1"]
+[ext_resource type="Script" path="res://hud.gd" id="1_wwwta"]
+
+[node name="hud" type="CanvasLayer"]
+script = ExtResource("1_wwwta")
+
+[node name="scorelabel" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -90.0
+offset_bottom = 81.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("1_gu3o1")
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="message" type="Label" parent="."]
+offset_left = 312.0
+offset_top = 552.0
+offset_right = 897.0
+offset_bottom = 633.0
+theme_override_fonts/font = ExtResource("1_gu3o1")
+theme_override_font_sizes/font_size = 64
+text = "dodge the creeps"
+
+[node name="startbutton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -83.0
+offset_top = -43.0
+offset_right = 83.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_gu3o1")
+theme_override_font_sizes/font_size = 64
+text = "START"
+
+[node name="messagetimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="pressed" from="startbutton" to="." method="_on_startbutton_pressed"]
+[connection signal="timeout" from="messagetimer" to="." method="_on_messagetimer_timeout"]

@@ -19,20 +19,23 @@ func _on_player_hit():
 func game_over():
 	$scoretimer.stop()
 	$mobtimer.stop()
+	$hud.show_game_over()
 	
 func new_game():
 	score = 0
 	$Player.start($startposition.position)
 	$starttimer.start()
-	
-
+	$hud.update_score(score)
+	$hud.show_message('get ready...')
 
 func _on_scoretimer_timeout():
 	score += 1
-	
+	$hud.update_score(score)
+
 func _on_starttimer_timeout():
 	$mobtimer.start()
 	$scoretimer.start()
+	$hud.update_score(score)
 
 func _on_mobtimer_timeout():
 	#create new instance of mob
@@ -58,3 +61,5 @@ func _on_mobtimer_timeout():
 	
 	#spawn the mob
 	add_child(mob)
+
+
