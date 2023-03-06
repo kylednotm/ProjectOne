@@ -12,9 +12,8 @@ func _ready():
 func _process(delta):
 	pass
 
-
 func _on_player_hit():
-	pass # Replace with function body.
+	game_over()
 
 func game_over():
 	$scoretimer.stop()
@@ -27,6 +26,7 @@ func new_game():
 	$starttimer.start()
 	$hud.update_score(score)
 	$hud.show_message('get ready...')
+	get_tree().call_group('mobs', 'queue_free')
 
 func _on_scoretimer_timeout():
 	score += 1

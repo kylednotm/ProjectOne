@@ -39,6 +39,7 @@ rotation = 0.00526311
 [node name="hud" parent="." instance=ExtResource("4_cv87o")]
 
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
+[connection signal="hit" from="Player" to="hud" method="_on_player_hit"]
 [connection signal="timeout" from="mobtimer" to="." method="_on_mobtimer_timeout"]
 [connection signal="timeout" from="scoretimer" to="." method="_on_scoretimer_timeout"]
 [connection signal="timeout" from="starttimer" to="." method="_on_starttimer_timeout"]
