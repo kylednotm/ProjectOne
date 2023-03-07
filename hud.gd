@@ -14,6 +14,7 @@ func show_game_over():
 	$message.text = 'dodge the creeps'
 	$message.show()
 	#one shot timer
+	
 	await get_tree().create_timer(1.0).timeout
 	$startbutton.show()
 	
@@ -22,6 +23,9 @@ func update_score(score):
 	
 func update_high_score(score):
 	$highscorelabel.text = str(score)
+	
+func update_total_time(total_time):
+	$totaltimelabel.text = str(total_time)
 
 func _on_startbutton_pressed():
 	$startbutton.hide()
