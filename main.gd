@@ -3,20 +3,36 @@ extends Node
 @export var mob_scene: PackedScene
 var score
 var high_score
+var highest_score
 var total_time = 0
+var save_path = 'user://saves/score.save'
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#new_game()
-	pass
+	load_score()
+	$hud.update_high_score(highest_score)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	total_time += 1
-	$hud.update_total_time(total_time/60)
+	if $Player.is_visible():
+		total_time += 1
+		$hud.update_total_time(total_time/60)
 
 func _on_player_hit():
 	game_over()
+
+func save_score():
+	var file = FileAccess.open(save_path, FileAccess.WRITE)
+	file.store_var(high_score)
+	
+func load_score():
+	if FileAccess.file_exists(save_path):
+		var file = FileAccess.open(save_path, FileAccess.READ)
+		highest_score = file.get_var()
+		print('file found')
+	else:
+		highest_score = 0
+		print('file not found')
 
 func game_over():
 	$scoretimer.stop()
@@ -28,6 +44,10 @@ func game_over():
 	high_score = int($hud/highscorelabel.text)
 	if score > high_score:
 		$hud.update_high_score(score)
+		
+	load_score()
+	if high_score > highest_score:
+		save_score()
 	
 func new_game():
 	score = 0
